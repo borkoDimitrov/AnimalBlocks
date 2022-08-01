@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/c3.wav-84e97a7347d1322e88ef4b9afd9fad19.sample"
+
+[deps]
+
+source_file="res://Assets/Music/MatchSounds/c3.wav"
+dest_files=[ "res://.import/c3.wav-84e97a7347d1322e88ef4b9afd9fad19.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/a5.wav-01765b5ba2c2eb8d5701abdc4393e4db.sample"
+
+[deps]
+
+source_file="res://Assets/Music/MatchSounds/a5.wav"
+dest_files=[ "res://.import/a5.wav-01765b5ba2c2eb8d5701abdc4393e4db.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
