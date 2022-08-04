@@ -19,7 +19,7 @@ func _ready():
 	$Floor.position.y = tile_size * level_size.y
 	
 func make_tile_types():
-	all_tiles = FileGrabber.get_file("res://Tiles/")
+	all_tiles = FileGrabber.get_file("res://Tiles2/")
 	all_tiles.shuffle()
 	for i in number_of_animals:
 		possible_tiles.append(all_tiles[i])
@@ -31,9 +31,9 @@ func create_grid():
 			
 	for x in level_size.x:
 		var index = level_size.y - 1
-		yield(get_tree().create_timer(0.05), "timeout")
+		yield(get_tree().create_timer(0.1), "timeout")
 		for y in level_size.y:
-			var end_position = Vector2(offset + (tile_size * x), offset + (tile_size * index))
+			var end_position = Vector2(offset + (tile_size * x), -(tile_size * index) - 250)
 			var tile = load(possible_tiles[randi() % number_of_animals]).instance()
 			tile.position = end_position
 			$Tiles.add_child(tile)
@@ -44,11 +44,17 @@ func create_grid():
 		detector.cast_to = Vector2(0, (tile_size * -level_size.y))
 		$Detectors.add_child(detector)
 		
-	get_tree().call_group("tiles", "EnableTextureButton")
-			
+	get_tree().call_group("tiles", "EnableBlockButton")
+
+	for x in level_size.x:
+		yield(get_tree().create_timer(0.1), "timeout")
+		var player = $AudioPlayer.duplicate()
+		add_child(player)
+		player.play_sound()
+		player.connect("finished", player, "queue_free")
 
 func HandleMatchTiles(matches_count_number):
 	if matches_count_number >= MATCH_COUNT:
 		$AudioPlayer.play_sound()
-		get_tree().call_group("matched", "Vanish")
-		get_tree().call_group("detectors", "Detect")
+		get_tree().call_group("matched", "DestroyBlock")
+		get_tree().call_group("detectors", "DetectBlocks")

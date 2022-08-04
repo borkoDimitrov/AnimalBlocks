@@ -1,16 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://Utils/AudioPlayer.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/CartoonForest.png" type="Texture" id=3]
 [ext_resource path="res://Utils/MusicPlayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Skills/SmallBomb.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2000, 10 )
 
 [node name="Level" type="Node2D" groups=["level"]]
 script = ExtResource( 1 )
-level_size = Vector2( 15, 10 )
+level_size = Vector2( 12, 10 )
+number_of_animals = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -20,6 +22,9 @@ margin_right = 1024.0
 margin_bottom = 600.0
 texture = ExtResource( 3 )
 expand = true
+
+[node name="SmallBomb" parent="CanvasLayer" instance=ExtResource( 5 )]
+position = Vector2( 50, 384 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 0, 1600 )
