@@ -3,7 +3,6 @@ extends RigidBody2D
 var tile_id = ""
 onready var raycasts = [$Left, $Right, $Up, $Down]
 onready var anim_player = $AnimationPlayer
-onready var DESTROY_OBJECT = preload("res://Plugins/destructible_object.tscn")
 
 func _ready():
 	tile_id = $TextureButton.texture_normal
@@ -64,30 +63,16 @@ func SlideLeft(detector_position):
 		$Tween.start();
 		
 func _on_TextureButton_pressed():
-	match Globals.state:
-		Globals.SKILL_EFECTS.SWITCH:
-			if Globals.first_block != null and Globals.first_block.IsNeighbour(self):
-				SwipeTwoBlocks()
-			elif Globals.first_block != null:
-				ChooseNewBlock()
-			else:
-				Globals.first_block = self
-				ShowNeighbours()
-				
-		Globals.SKILL_EFECTS.SMALL_BOMB:
-			DestroyBlock()
-		Globals.SKILL_EFECTS.NONE:
-			HandleMatches()
+	Globals.emit_signal("HANDLE_TILE_CLICKED", self)
 		
 func VanishBlock():
 	$AnimationPlayer.play("Vanish")
 	
 func DestroyBlock():
-	var destroy_object = DESTROY_OBJECT.instance()
+	var destroy_object = load("res://Plugins/destructible_object.tscn").instance()
 	destroy_object.global_position = global_position
 	destroy_object.get_node("sprite").texture = $TextureButton.texture_normal
 	get_parent().add_child(destroy_object)
-	destroy_object.DestroyObject()
 	
 	queue_free()
 
@@ -96,17 +81,8 @@ func _on_Tween_tween_completed(_object, key):
 		Physics2DServer.area_set_param(get_viewport().find_world_2d().get_space(), 
 		Physics2DServer.AREA_PARAM_GRAVITY, 98)
 		
-#SKILLS
 func SwipeTwoBlocks():
 	SwipePosWithNeighbour(Globals.first_block.position)
 	Globals.first_block.SwipePosWithNeighbour(position)
 	Globals.first_block.HideNeighbours()
 	Globals.first_block = null
-	
-func ChooseNewBlock():
-	Globals.first_block.HideNeighbours()
-	if Globals.first_block != self:
-		Globals.first_block = self
-		ShowNeighbours()
-	else:
-		Globals.first_block = null

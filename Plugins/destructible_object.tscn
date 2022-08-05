@@ -6,10 +6,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="object" type="RigidBody2D"]
+position = Vector2( 489, 271 )
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
-blocks_per_side = 4
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

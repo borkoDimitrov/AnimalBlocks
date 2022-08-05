@@ -35,7 +35,6 @@ func _ready():
 		vframes = 1,
 		width = 0
 	}
-	print(object.parent)
 	object.blocks_container.name = self.name + "_blocks_container"
 	
 	if randomize_seed: randomize()
@@ -112,15 +111,17 @@ func _ready():
 
 			object.frame += 1
 
-	call_deferred("add_children", object)
+#	call_deferred("add_children", object)
+	add_children(object)
+	object.detonate = true
 
-func DestroyObject():
-	if object.can_detonate:
-		object.detonate = true
+#func DestroyObject():
+#	if object.can_detonate:
+#		object.detonate = true
 
-func _physics_process(delta):
-	if Input.is_mouse_button_pressed(BUTTON_LEFT) and object.can_detonate:
-		object.detonate = true
+func _physics_process(_delta):
+#	if Input.is_mouse_button_pressed(BUTTON_LEFT) and object.can_detonate:
+#		object.detonate = true
 
 	if object.can_detonate and object.detonate:
 		detonate()
