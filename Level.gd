@@ -14,10 +14,9 @@ var all_tiles = []
 var possible_tiles = []
 
 func _ready():
-	Globals.connect("HANDLE_MATCH_TILES", self, "HandleMatchTiles")
 	Globals.connect("HANDLE_TILE_CLICKED", self, "HandleTileClicked")
 	Globals.connect("HANDLE_SKILL_ACTIVATION", self, "HandleSkillActivation")
-	Globals.connect("HANDLE_SKILL_DEACTIVATION", self, "HandleSkillDeactivation")
+	Globals.connect("HANDLE_SET_MATCH_COUNT", self, "HandleSetMatchCount")
 #	$MusicPlayer.pick_song()
 	
 	randomize()
@@ -61,65 +60,36 @@ func create_grid():
 		player.connect("finished", player, "queue_free")
 
 func HandleTileClicked(tile):
-	if SmallBomb.IsActive():
-		HandleSmallBomb(tile)
-		
-	elif SwapTiles.IsActive():
-		HandleTileSwap(tile)
-		
-	elif MatchTwoTiles.IsActive():
-		HandleMatchTwoTiles(tile)
-		
-	else:
-		tile.HandleMatches()
-			
-func HandleMatchTiles(matches_count_number):
-	if matches_count_number >= match_count:
-		$AudioPlayer.play_sound()
-		get_tree().call_group("matched", "VanishBlock")
-		get_tree().call_group("detectors", "DetectBlocks")
-		
-#		yield(get_tree().create_timer(0.2), "timeout")
-#		var currentTiles = $Detectors.get_child(0).GetCurrentTilesCount()
+	for skill in $CanvasLayer/Skills.get_children():
+		if skill.IsActive() and skill.HandleTileClick(tile):
+			return
+	
+	HandleMatchTiles(tile)
 		
 func HandleSkillActivation(current_skill):
 	for skill in $CanvasLayer/Skills.get_children():
 		if skill != current_skill:
 			skill.DeactivateSkill()
-			
-func HandleSkillDeactivation(current_skill):
-	if current_skill == MatchTwoTiles:
-		match_count = 3
-	elif current_skill == SwapTiles:
-		if Globals.first_block != null:
-			Globals.first_block.HideNeighbours()
-			Globals.first_block = null
-			
-func HandleMatchTwoTiles(tile):
-	match_count = 2
-	tile.HandleMatches()
-	MatchTwoTiles.UseSkill()
-	MatchTwoTiles.DeactivateSkill()
-			
-func HandleSmallBomb(tile):
-	tile.DestroyBlock()
-	SmallBomb.UseSkill()
-	SmallBomb.DeactivateSkill()
-			
-func HandleTileSwap(tile):
-	if Globals.first_block != null and Globals.first_block.IsNeighbour(tile):
-		tile.SwipeTwoBlocks()
-		SwapTiles.UseSkill()
-		SwapTiles.DeactivateSkill()
-	elif Globals.first_block != null:
-			Globals.first_block.HideNeighbours()
-			if Globals.first_block != tile:
-				Globals.first_block = tile
-				tile.ShowNeighbours()
-			else:
-				Globals.first_block = null
-				SwapTiles.DeactivateSkill()
-	else:
-		Globals.first_block = tile
-		tile.ShowNeighbours()
+
+func OnMatch():
+	$AudioPlayer.play_sound()
+	get_tree().call_group("matched", "VanishBlock")
+	get_tree().call_group("detectors", "DetectBlocks")
+	
+	for skill in $CanvasLayer/Skills.get_children():
+		skill.OnMatchMade()
+	
+func HandleMatchTiles(tile):
+	var group_count = tile.MarkMatchingGroup()
+	
+	if group_count >= match_count:
+		OnMatch()
+		
+#		yield(get_tree().create_timer(0.2), "timeout")
+#		var currentTiles = $Detectors.get_child(0).GetCurrentTilesCount()
+	
+	tile.UnmarkMatchingGroup()
+
+func HandleSetMatchCount(count):
+	match_count = count
 	

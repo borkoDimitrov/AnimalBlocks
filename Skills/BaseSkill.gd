@@ -20,9 +20,8 @@ func ActivateSkill():
 	Globals.emit_signal("HANDLE_SKILL_ACTIVATION", self)
 	is_active = true
 	rotation_speed = 5
-	
+
 func DeactivateSkill():
-	Globals.emit_signal("HANDLE_SKILL_DEACTIVATION", self)
 	is_active = false
 	rotation_speed = 0
 	rotation = 0
@@ -39,6 +38,12 @@ func UseSkill():
 	
 	if not CanBeActivated():
 		$RichTextLabel.modulate = Color.red
+
+func OnMatchMade():
+	pass
+	
+func HandleTileClick(_tile) -> bool:
+	return false
 		
 func _physics_process(delta):
 	rotate(rotation_speed * delta)

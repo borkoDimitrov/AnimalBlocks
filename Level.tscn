@@ -6,7 +6,7 @@
 [ext_resource path="res://Utils/MusicPlayer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Skills/SmallBomb.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Skills/SwapTiles.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Skills/Match2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Skills/MatchTwoTiles.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2000, 10 )
@@ -26,14 +26,14 @@ expand = true
 
 [node name="Skills" type="Node2D" parent="CanvasLayer"]
 
-[node name="MatchTwoTiles" parent="CanvasLayer/Skills" instance=ExtResource( 7 )]
-position = Vector2( 51, 297 )
-
 [node name="SwapTiles" parent="CanvasLayer/Skills" instance=ExtResource( 6 )]
 position = Vector2( 56, 404 )
 
 [node name="SmallBomb" parent="CanvasLayer/Skills" instance=ExtResource( 5 )]
 position = Vector2( 41, 517 )
+
+[node name="MatchTwoTiles" parent="CanvasLayer/Skills" instance=ExtResource( 7 )]
+position = Vector2( 48, 314 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 0, 1600 )

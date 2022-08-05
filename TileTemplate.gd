@@ -22,11 +22,13 @@ func RemoveFromGroup():
 func EnableBlockButton():
 	$TextureButton.disabled = false
 
-func HandleMatches():
+func MarkMatchingGroup() -> int:
 	var count = [0]
 	AddToGroup(count)
 	
-	Globals.emit_signal("HANDLE_MATCH_TILES", count.front())
+	return count.front()
+
+func UnmarkMatchingGroup():
 	get_tree().call_group("matched", "RemoveFromGroup")
 
 func ShowNeighbours():
@@ -43,7 +45,7 @@ func IsNeighbour(cell) -> bool:
 	return false
 
 func HideNeighbours():
-	for ray in Globals.first_block.raycasts:
+	for ray in raycasts:
 		var tileCollider = ray.get_collider()
 		if tileCollider != null:
 			tileCollider.anim_player.play("RESET")
@@ -81,8 +83,3 @@ func _on_Tween_tween_completed(_object, key):
 		Physics2DServer.area_set_param(get_viewport().find_world_2d().get_space(), 
 		Physics2DServer.AREA_PARAM_GRAVITY, 98)
 		
-func SwipeTwoBlocks():
-	SwipePosWithNeighbour(Globals.first_block.position)
-	Globals.first_block.SwipePosWithNeighbour(position)
-	Globals.first_block.HideNeighbours()
-	Globals.first_block = null
