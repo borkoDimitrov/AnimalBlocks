@@ -19,7 +19,7 @@ func _ready():
 	$Floor.position.y = tile_size * level_size.y
 	
 func make_tile_types():
-	all_tiles = FileGrabber.get_file("res://Tiles2/")
+	all_tiles = FileGrabber.get_file("res://Tiles/")
 	all_tiles.shuffle()
 	for i in number_of_animals:
 		possible_tiles.append(all_tiles[i])
@@ -56,5 +56,5 @@ func create_grid():
 func HandleMatchTiles(matches_count_number):
 	if matches_count_number >= MATCH_COUNT:
 		$AudioPlayer.play_sound()
-		get_tree().call_group("matched", "DestroyBlock")
+		get_tree().call_group("matched", "VanishBlock")
 		get_tree().call_group("detectors", "DetectBlocks")

@@ -3,6 +3,7 @@ extends RigidBody2D
 var tile_id = ""
 onready var raycasts = [$Left, $Right, $Up, $Down]
 onready var anim_player = $AnimationPlayer
+onready var DESTROY_OBJECT = preload("res://Plugins/destructible_object.tscn")
 
 func _ready():
 	tile_id = $TextureButton.texture_normal
@@ -78,8 +79,17 @@ func _on_TextureButton_pressed():
 		Globals.SKILL_EFECTS.NONE:
 			HandleMatches()
 		
-func DestroyBlock():
+func VanishBlock():
 	$AnimationPlayer.play("Vanish")
+	
+func DestroyBlock():
+	var destroy_object = DESTROY_OBJECT.instance()
+	destroy_object.global_position = global_position
+	destroy_object.get_node("sprite").texture = $TextureButton.texture_normal
+	get_parent().add_child(destroy_object)
+	destroy_object.DestroyObject()
+	
+	queue_free()
 
 func _on_Tween_tween_completed(_object, key):
 	if key == ":position":
