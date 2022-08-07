@@ -2,10 +2,6 @@ extends Node2D
 
 var tile_size = Globals.TILE_SIZE
 
-onready var SmallBomb = $CanvasLayer/Skills/SmallBomb
-onready var SwapTiles = $CanvasLayer/Skills/SwapTiles
-onready var MatchTwoTiles = $CanvasLayer/Skills/MatchTwoTiles
-
 export var level_size : Vector2 = Vector2(10,10)
 export var number_of_animals : int = 4
 export var match_count : int = 3

@@ -27,13 +27,13 @@ expand = true
 [node name="Skills" type="Node2D" parent="CanvasLayer"]
 
 [node name="SwapTiles" parent="CanvasLayer/Skills" instance=ExtResource( 6 )]
-position = Vector2( 56, 404 )
+position = Vector2( 42, 441 )
 
 [node name="SmallBomb" parent="CanvasLayer/Skills" instance=ExtResource( 5 )]
 position = Vector2( 41, 517 )
 
 [node name="MatchTwoTiles" parent="CanvasLayer/Skills" instance=ExtResource( 7 )]
-position = Vector2( 48, 314 )
+position = Vector2( 41, 368 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 0, 1600 )

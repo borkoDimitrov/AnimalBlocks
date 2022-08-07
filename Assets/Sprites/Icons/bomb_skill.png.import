@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Checkbox.png-8f9c0d3f3ad2c22308f1615432f0614b.stex"
+path="res://.import/bomb_skill.png-578427a68f4ebe4eca945d9acbf9f151.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Icons/Checkbox.png"
-dest_files=[ "res://.import/Checkbox.png-8f9c0d3f3ad2c22308f1615432f0614b.stex" ]
+source_file="res://Assets/Sprites/Icons/bomb_skill.png"
+dest_files=[ "res://.import/bomb_skill.png-578427a68f4ebe4eca945d9acbf9f151.stex" ]
 
 [params]
 
