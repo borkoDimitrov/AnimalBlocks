@@ -31,6 +31,14 @@ func MarkMatchingGroup() -> int:
 func UnmarkMatchingGroup():
 	get_tree().call_group("matched", "RemoveFromGroup")
 
+func GetNeighbours() -> Array:
+	var neightbours = []
+	for ray in raycasts:
+		var tileCollider = ray.get_collider()
+		if tileCollider != null:
+			neightbours.append(tileCollider)
+	return neightbours
+
 func ShowNeighbours():
 	for ray in raycasts:
 		var tileCollider = ray.get_collider()

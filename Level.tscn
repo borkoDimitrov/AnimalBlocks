@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://Utils/AudioPlayer.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Skills/SmallBomb.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Skills/SwapTiles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Skills/MatchTwoTiles.tscn" type="PackedScene" id=7]
+[ext_resource path="res://LevelManager.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2000, 10 )
@@ -14,6 +15,7 @@ extents = Vector2( 2000, 10 )
 [node name="Level" type="Node2D" groups=["level"]]
 script = ExtResource( 1 )
 level_size = Vector2( 12, 10 )
+number_of_animals = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -58,5 +60,7 @@ one_shot = true
 script = ExtResource( 2 )
 
 [node name="MusicPlayer" parent="." instance=ExtResource( 4 )]
+
+[node name="LevelManager" parent="." instance=ExtResource( 8 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,5 +1,7 @@
 extends Node2D
 
+signal HANDLE_SKILL_ACTIVATION(current_skill)
+
 export (int) var skill_uses_left = 3
 var is_active = false
 var rotation_speed = 0
@@ -17,7 +19,7 @@ func ActivateSkill():
 	if not CanBeActivated():
 		return
 		
-	Globals.emit_signal("HANDLE_SKILL_ACTIVATION", self)
+	emit_signal("HANDLE_SKILL_ACTIVATION", self)
 	is_active = true
 	rotation_speed = 5
 
