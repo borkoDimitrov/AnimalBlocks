@@ -19,6 +19,9 @@ func _ready():
 #	$MusicPlayer.pick_song()
 	
 	randomize()
+	refresh_level()
+	
+func refresh_level():
 	make_tile_types()
 	create_grid()
 	$Floor.position.y = tile_size * level_size.y
@@ -56,8 +59,8 @@ func create_grid():
 	$Camera2D.position = Vector2((level_size.x * tile_size + offset) / 2,
 		 (level_size.y * tile_size + offset) / 2)
 			
-	var weight = 0.8
-	var matrix = create_2d_vector()
+#	var weight = 0.8
+#	var matrix = create_2d_vector()
 	
 	for x in level_size.x:
 		var index = level_size.y - 1
@@ -81,7 +84,7 @@ func create_grid():
 			tile.position = end_position
 			$Tiles.add_child(tile)
 	
-			matrix[x][y] = tile
+#			matrix[x][y] = tile
 			
 			index -= 1
 			
@@ -112,7 +115,7 @@ func HandleSkillActivation(current_skill):
 			skill.DeactivateSkill()
 
 func DestroyTile(tile):
-	$LevelManager.RemoveTiles(1)
+	$LevelManager.CountTiles(1)
 	tile.DestroyBlock()
 	
 func OnMatch():
@@ -127,7 +130,7 @@ func HandleMatchTiles(tile):
 	var group_count = tile.MarkMatchingGroup()
 	
 	if group_count >= match_count:
-		$LevelManager.RemoveTiles(group_count)
+		$LevelManager.CountTiles(group_count)
 		OnMatch()
 		
 #		yield(get_tree().create_timer(0.2), "timeout")
@@ -139,4 +142,5 @@ func HandleSetMatchCount(count):
 	match_count = count
 	
 func GameOver():
-	print("Succes")
+	yield(get_tree().create_timer(1), "timeout")
+	refresh_level()

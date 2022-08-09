@@ -6,19 +6,16 @@ func DetectBlocks():
 func _on_Timer_timeout():
 	if get_collider() == null:
 		get_tree().call_group("tiles", "SlideLeft", position.x)
-
+	
 func GetCurrentTilesCount() -> int:
-	var colliders = []
+	var count = 0
 	
 	while is_colliding():
-		var obj = get_collider()
-		colliders.append(obj)
-		add_exception(obj)
+		count += 1
+		add_exception(get_collider())
 		force_raycast_update()
 		
-	var size = colliders.size()
-	for coll in colliders:
-		remove_exception(coll)
-		
-	return size
+	clear_exceptions()
+	
+	return count
 		

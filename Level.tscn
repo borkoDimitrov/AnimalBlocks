@@ -15,7 +15,9 @@ extents = Vector2( 2000, 10 )
 [node name="Level" type="Node2D" groups=["level"]]
 script = ExtResource( 1 )
 level_size = Vector2( 12, 10 )
-number_of_animals = 5
+number_of_animals = 2
+
+[node name="LevelManager" parent="." instance=ExtResource( 8 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -60,7 +62,5 @@ one_shot = true
 script = ExtResource( 2 )
 
 [node name="MusicPlayer" parent="." instance=ExtResource( 4 )]
-
-[node name="LevelManager" parent="." instance=ExtResource( 8 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
