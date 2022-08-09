@@ -16,9 +16,9 @@ var possible_tiles = []
 func _ready():
 	$LevelManager.connect("GAME_OVER", self, "GameOver")
 	Globals.connect("HANDLE_TILE_CLICKED", self, "HandleTileClicked")
-	$CanvasLayer/Skills/SmallBomb.connect("DESTROY_TILE", self, "DestroyTile")
-	$CanvasLayer/Skills/MatchTwoTiles.connect("HANDLE_SET_MATCH_COUNT", self, "HandleSetMatchCount")
-	for skill in $CanvasLayer/Skills.get_children():
+	$"%SmallBomb".connect("DESTROY_TILE", self, "DestroyTile")
+	$"%MatchTwoTiles".connect("HANDLE_SET_MATCH_COUNT", self, "HandleSetMatchCount")
+	for skill in $"%Skills".get_children():
 		skill.connect("HANDLE_SKILL_ACTIVATION", self, "HandleSkillActivation")
 #	$MusicPlayer.pick_song()
 	
@@ -32,28 +32,8 @@ func refresh_level():
 	$LevelManager.max_tiles = level_size.x * level_size.y
 	$LevelManager.current_tiles = level_size.x * level_size.y
 	
-func create_2d_vector():
-	var array = []
-	for i in level_size.x:
-		array.append([])
-		for j in level_size.y:
-			array[i].append(null)
-	return array
-	
-func GetNeighbours(matrix, i, j):
-	var result = []
-	if i > 0 and matrix[i-1][j] != null:
-		result.append(matrix[i-1][j])
-	if j > 0 and matrix[i][j-1] != null:
-		result.append(matrix[i][j-1])
-	if i + 1 < matrix.size() and matrix[i+1][j] != null:
-		result.append(matrix[i+1][j])
-	if j + 1 < matrix[i].size() and matrix[i][j+1] != null:
-		result.append(matrix[i][j+1])
-	return result
-	
-func GetWeightedFigureId(matrix, x, y, weight):
-	var neighbours = GetNeighbours(matrix, x, y)
+func GetWeightedFigureId(matrix, x, y):
+	var neighbours = Globals.GetNeighbours(matrix, x, y)
 	var figureId = possible_tiles[randi() % number_of_animals]
 	if neighbours.size() <= 0:
 		return figureId
@@ -84,13 +64,13 @@ func create_grid():
 	$Camera2D.position = Vector2((level_size.x * tile_size + offset) / 2,
 		 (level_size.y * tile_size + offset) / 2)
 			
-	var matrix = create_2d_vector()
+	var matrix = Globals.create_2d_vector(level_size)
 	
 	for x in level_size.x:
 		var index = level_size.y - 1
 		yield(get_tree().create_timer(0.1), "timeout")
 		for y in level_size.y:
-			var figureId = GetWeightedFigureId(matrix, x, y, weight)
+			var figureId = GetWeightedFigureId(matrix, x, y)
 			var end_position = Vector2(offset + (tile_size * x), -(tile_size * index) - 250)
 			index -= 1
 			
@@ -116,14 +96,14 @@ func create_grid():
 		player.connect("finished", player, "queue_free")
 
 func HandleTileClicked(tile):
-	for skill in $CanvasLayer/Skills.get_children():
+	for skill in $"%Skills".get_children():
 		if skill.IsActive() and skill.HandleTileClick(tile):
 			return
 	
 	HandleMatchTiles(tile)
 		
 func HandleSkillActivation(current_skill):
-	for skill in $CanvasLayer/Skills.get_children():
+	for skill in $"%Skills".get_children():
 		if skill != current_skill:
 			skill.DeactivateSkill()
 
@@ -152,7 +132,7 @@ func OnMatch(count):
 	get_tree().call_group("matched", "VanishBlock")
 	get_tree().call_group("detectors", "DetectBlocks")
 	
-	for skill in $CanvasLayer/Skills.get_children():
+	for skill in $"%Skills".get_children():
 		skill.OnMatchMade()
 	
 func HandleSetMatchCount(count):
@@ -166,21 +146,22 @@ func CreateLabelForMatch(tile, count):
 	
 	var image = tile.button.texture_normal.get_data()
 	image.lock()
-	score.modulate = image.get_pixel(10, 10)
+	score.modulate = image.get_pixel(15, 15)
 	image.unlock()
 	
 	var pos = score.rect_position
-	var offset = randi() % 100 + 60
-	print(offset)
-	$Tween.interpolate_property(score, "rect_position",
-	 Vector2(pos.x, pos.y - 40), Vector2(pos.x - 10, pos.y - offset),0.8,
-	Tween.TRANS_SINE, Tween.EASE_OUT)
-	$Tween.start()
+	
+	var tweenDelay = 0.5
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(score, "rect_position", Vector2(pos.x - 20, pos.y - 150),tweenDelay).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(score, "rect_scale", Vector2(0.5,0.5), tweenDelay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(score, "modulate:a", 0.4, tweenDelay)
+	tween.tween_callback(score, "queue_free").set_delay(tweenDelay)
 	
 func CountSkillsLeft():
-	current_score += $CanvasLayer/Skills/SwapTiles.skill_uses_left * 100
-	current_score += $CanvasLayer/Skills/MatchTwoTiles.skill_uses_left * 75 
-	current_score += $CanvasLayer/Skills/SmallBomb.skill_uses_left * 50
+	current_score += $"%SwapTiles".skill_uses_left * 100
+	current_score += $"%MatchTwoTiles".skill_uses_left * 75 
+	current_score += $"%SmallBomb".skill_uses_left * 50
 
 func GameOver():
 	yield(get_tree().create_timer(1), "timeout")
@@ -189,6 +170,3 @@ func GameOver():
 	
 	yield(get_tree().create_timer(5), "timeout")
 	get_tree().reload_current_scene()
-
-func _on_Tween_tween_completed(object, _key):
-	object.queue_free()

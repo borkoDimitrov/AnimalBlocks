@@ -46,14 +46,18 @@ custom_fonts/font = SubResource( 3 )
 text = "SCORE: 0"
 
 [node name="Skills" type="Node2D" parent="CanvasLayer"]
+unique_name_in_owner = true
 
 [node name="SwapTiles" parent="CanvasLayer/Skills" instance=ExtResource( 6 )]
+unique_name_in_owner = true
 position = Vector2( 42, 441 )
 
 [node name="SmallBomb" parent="CanvasLayer/Skills" instance=ExtResource( 5 )]
+unique_name_in_owner = true
 position = Vector2( 41, 517 )
 
 [node name="MatchTwoTiles" parent="CanvasLayer/Skills" instance=ExtResource( 7 )]
+unique_name_in_owner = true
 position = Vector2( 41, 368 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
@@ -80,7 +84,4 @@ script = ExtResource( 2 )
 
 [node name="MusicPlayer" parent="." instance=ExtResource( 4 )]
 
-[node name="Tween" type="Tween" parent="."]
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
