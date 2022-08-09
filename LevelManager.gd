@@ -2,6 +2,7 @@ extends Node
 
 signal GAME_OVER
 
+var level_count : int = 0
 var max_tiles : int
 var current_tiles : int
 

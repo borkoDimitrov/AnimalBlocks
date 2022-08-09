@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+onready var BOMB = preload(\"res://Skills/NormalBomb.tscn\")
+
+func _ready():
+	pass # Replace with function body.
+
+func CreateBonus(tile):
+	var normal_bomb = BOMB.instance()
+	normal_bomb
+"
+
+[node name="BonusCreator" type="Node"]
+script = SubResource( 1 )

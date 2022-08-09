@@ -1,8 +1,10 @@
 extends RigidBody2D
 
 var tile_id = ""
+var tile_info
 onready var raycasts = [$Left, $Right, $Up, $Down]
 onready var anim_player = $AnimationPlayer
+onready var button = $TextureButton
 
 func _ready():
 	tile_id = $TextureButton.texture_normal
@@ -76,6 +78,7 @@ func _on_TextureButton_pressed():
 	Globals.emit_signal("HANDLE_TILE_CLICKED", self)
 		
 func VanishBlock():
+	$TextureButton.disabled = true
 	$AnimationPlayer.play("Vanish")
 	
 func DestroyBlock():
