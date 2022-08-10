@@ -4,7 +4,6 @@ var tile_id = ""
 var tile_info
 onready var raycasts = [$Left, $Right, $Up, $Down]
 onready var anim_player = $AnimationPlayer
-onready var button = $TextureButton
 
 func _ready():
 	tile_id = $TextureButton.texture_normal
@@ -74,6 +73,14 @@ func SlideLeft(detector_position):
 			position.x - Globals.TILE_SIZE, 0.15, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 		$Tween.start();
 		
+func GetPixelColor() -> Color:
+	var image = $TextureButton.texture_normal.get_data()
+	image.lock()
+	var color = image.get_pixel(60, 15)
+	image.unlock()
+	
+	return color
+
 func _on_TextureButton_pressed():
 	Globals.emit_signal("HANDLE_TILE_CLICKED", self)
 		

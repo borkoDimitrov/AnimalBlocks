@@ -1,7 +1,5 @@
 extends Node2D
 
-var MATCH_LABEL = preload("res://Utils/MatchLabel.tscn")
-
 var tile_size = Globals.TILE_SIZE
 var current_score : int = 0
 
@@ -139,21 +137,17 @@ func HandleSetMatchCount(count):
 	match_count = count
 
 func CreateLabelForMatch(tile, count):
-	var score = MATCH_LABEL.instance()
+	var score = load("res://Utils/MatchLabel.tscn").instance()
 	score.rect_global_position = tile.global_position
 	score.text = str(count)
+	score.modulate = tile.GetPixelColor()
 	add_child(score)
 	
-	var image = tile.button.texture_normal.get_data()
-	image.lock()
-	score.modulate = image.get_pixel(15, 15)
-	image.unlock()
-	
 	var pos = score.rect_position
-	
 	var tweenDelay = 0.5
+	
 	var tween := create_tween().set_parallel(true)
-	tween.tween_property(score, "rect_position", Vector2(pos.x - 20, pos.y - 150),tweenDelay).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(score, "rect_position", Vector2(pos.x - 20, pos.y - 150),tweenDelay).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).from(Vector2(pos.x - 10, pos.y - 70))
 	tween.tween_property(score, "rect_scale", Vector2(0.5,0.5), tweenDelay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	tween.tween_property(score, "modulate:a", 0.4, tweenDelay)
 	tween.tween_callback(score, "queue_free").set_delay(tweenDelay)

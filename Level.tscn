@@ -23,7 +23,7 @@ extents = Vector2( 2000, 10 )
 script = ExtResource( 1 )
 level_size = Vector2( 12, 10 )
 number_of_animals = 5
-weight = 0.7
+weight = 0.3
 
 [node name="LevelManager" parent="." instance=ExtResource( 8 )]
 
