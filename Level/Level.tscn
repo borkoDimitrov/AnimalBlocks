@@ -1,20 +1,20 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Level.gd" type="Script" id=1]
+[ext_resource path="res://Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Utils/AudioPlayer.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Sprites/CartoonForest.png" type="Texture" id=3]
-[ext_resource path="res://Utils/MusicPlayer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Skills/SmallBomb.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Skills/SwapTiles.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Skills/MatchTwoTiles.tscn" type="PackedScene" id=7]
-[ext_resource path="res://LevelManager.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/Fonts/CHUBBY.TTF" type="DynamicFontData" id=9]
+[ext_resource path="res://Assets/Fonts/CHUBBY.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Sprites/CartoonForest.png" type="Texture" id=4]
+[ext_resource path="res://Utils/MusicPlayer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://LevelManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Skills/SmallBomb.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Skills/MatchTwoTiles.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Skills/SwapTiles.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Theme" id=2]
 
 [sub_resource type="DynamicFont" id=3]
 size = 30
-font_data = ExtResource( 9 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2000, 10 )
@@ -22,10 +22,10 @@ extents = Vector2( 2000, 10 )
 [node name="Level" type="Node2D" groups=["level"]]
 script = ExtResource( 1 )
 level_size = Vector2( 12, 10 )
-number_of_animals = 5
+number_of_animals = 2
 weight = 0.3
 
-[node name="LevelManager" parent="." instance=ExtResource( 8 )]
+[node name="LevelManager" parent="." instance=ExtResource( 6 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -33,10 +33,11 @@ layer = -1
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 margin_right = 1024.0
 margin_bottom = 600.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 expand = true
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
 margin_left = 401.0
 margin_top = 9.0
 margin_right = 587.0
@@ -48,15 +49,15 @@ text = "SCORE: 0"
 [node name="Skills" type="Node2D" parent="CanvasLayer"]
 unique_name_in_owner = true
 
-[node name="SwapTiles" parent="CanvasLayer/Skills" instance=ExtResource( 6 )]
+[node name="SwapTiles" parent="CanvasLayer/Skills" instance=ExtResource( 9 )]
 unique_name_in_owner = true
 position = Vector2( 42, 441 )
 
-[node name="SmallBomb" parent="CanvasLayer/Skills" instance=ExtResource( 5 )]
+[node name="SmallBomb" parent="CanvasLayer/Skills" instance=ExtResource( 7 )]
 unique_name_in_owner = true
 position = Vector2( 41, 517 )
 
-[node name="MatchTwoTiles" parent="CanvasLayer/Skills" instance=ExtResource( 7 )]
+[node name="MatchTwoTiles" parent="CanvasLayer/Skills" instance=ExtResource( 8 )]
 unique_name_in_owner = true
 position = Vector2( 41, 368 )
 
@@ -82,6 +83,6 @@ one_shot = true
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
 script = ExtResource( 2 )
 
-[node name="MusicPlayer" parent="." instance=ExtResource( 4 )]
+[node name="MusicPlayer" parent="." instance=ExtResource( 5 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

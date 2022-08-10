@@ -12,7 +12,6 @@ var all_tiles = []
 var possible_tiles = []
 
 func _ready():
-	$LevelManager.connect("GAME_OVER", self, "GameOver")
 	Globals.connect("HANDLE_TILE_CLICKED", self, "HandleTileClicked")
 	$"%SmallBomb".connect("DESTROY_TILE", self, "DestroyTile")
 	$"%MatchTwoTiles".connect("HANDLE_SET_MATCH_COUNT", self, "HandleSetMatchCount")
@@ -27,8 +26,6 @@ func refresh_level():
 	make_tile_types()
 	create_grid()
 	$Floor.position.y = tile_size * level_size.y
-	$LevelManager.max_tiles = level_size.x * level_size.y
-	$LevelManager.current_tiles = level_size.x * level_size.y
 	
 func GetWeightedFigureId(matrix, x, y):
 	var neighbours = Globals.GetNeighbours(matrix, x, y)
@@ -106,7 +103,6 @@ func HandleSkillActivation(current_skill):
 			skill.DeactivateSkill()
 
 func DestroyTile(tile):
-	$LevelManager.CountTiles(1)
 	tile.DestroyBlock()
 	
 func HandleMatchTiles(tile):
@@ -114,17 +110,16 @@ func HandleMatchTiles(tile):
 	
 	if group_count >= match_count:
 		CreateLabelForMatch(tile, group_count)
-		OnMatch(group_count)
+		OnMatch(tile, group_count)
 		
 #		yield(get_tree().create_timer(0.2), "timeout")
 #		var currentTiles = $Detectors.get_child(0).GetCurrentTilesCount()
 	
 	tile.UnmarkMatchingGroup()
 
-func OnMatch(count):
-	$LevelManager.CountTiles(count)
+func OnMatch(tile, count):
 	current_score += pow(count, 2)
-	$CanvasLayer/Label.text = "SCORE: " + str(current_score)
+	$"%Label".text = "SCORE: " + str(current_score)
 	
 	$AudioPlayer.play_sound()
 	get_tree().call_group("matched", "VanishBlock")
@@ -152,15 +147,16 @@ func CreateLabelForMatch(tile, count):
 	tween.tween_property(score, "modulate:a", 0.4, tweenDelay)
 	tween.tween_callback(score, "queue_free").set_delay(tweenDelay)
 	
-func CountSkillsLeft():
+func CountSkillsScore():
 	current_score += $"%SwapTiles".skill_uses_left * 100
-	current_score += $"%MatchTwoTiles".skill_uses_left * 75 
+	current_score += $"%MatchTwoTiles".skill_uses_left * 75
 	current_score += $"%SmallBomb".skill_uses_left * 50
 
-func GameOver():
+func LevelWon():
+	print("LEVEL WON")
 	yield(get_tree().create_timer(1), "timeout")
-	CountSkillsLeft()
-	$CanvasLayer/Label.text = "SCORE: " + str(current_score)
+	CountSkillsScore()
+	$"%Label".text = "SCORE: " + str(current_score)
 	
 	yield(get_tree().create_timer(5), "timeout")
 	get_tree().reload_current_scene()

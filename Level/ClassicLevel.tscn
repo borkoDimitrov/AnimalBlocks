@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Level/ClassicLevel.gd" type="Script" id=2]
+
+[node name="ClassicLevel" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+level_size = Vector2( 10, 10 )
+weight = 0.5

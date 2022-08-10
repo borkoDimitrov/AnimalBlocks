@@ -10,3 +10,8 @@ func CountTiles(tiles):
 	current_tiles -= tiles
 	if current_tiles == 0:
 		emit_signal("GAME_OVER")
+
+func OnMatch(count):
+	current_tiles -= count
+	OnMatch(count)
+
