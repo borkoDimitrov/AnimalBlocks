@@ -82,7 +82,7 @@ func create_grid():
 		$Detectors.add_child(detector)
 		
 	var tween := create_tween()
-	tween.tween_property($CanvasLayer/TilesBackground, "modulate:a", 1.0, 1.5).from(0.0)
+	tween.tween_property($CanvasLayer/TilesBackground, "modulate:a", 0.9, 1.5).from(0.0)
 	
 	get_tree().call_group("tiles", "EnableBlockButton")
 
@@ -129,7 +129,6 @@ func HandleMatchTiles(tile):
 func OnMatch(tile, count):
 	$AudioPlayer.play_sound()
 	get_tree().call_group("matched", "VanishBlock")
-	get_tree().call_group("detectors", "DetectBlocks")
 	
 	for skill in $"%Skills".get_children():
 		skill.OnMatchMade()

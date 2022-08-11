@@ -22,6 +22,8 @@ func OnMatch(tile, count):
 		current_score += pow(count, 2)
 		$"%Label".text = "SCORE: " + str(current_score)
 		
+	get_tree().call_group("detectors", "DetectBlocks")	
+		
 	CountTiles(tile, count)
 	.OnMatch(tile, count)
 	

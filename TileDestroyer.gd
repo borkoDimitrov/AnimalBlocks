@@ -5,4 +5,5 @@ func _on_TileDestroyer_body_entered(body):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	get_tree().call_group("tiles", "EnableBlockButton")
+	get_tree().call_group("detectors", "DetectBlocks")
 	queue_free()
