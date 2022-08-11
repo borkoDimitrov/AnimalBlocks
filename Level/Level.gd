@@ -63,7 +63,6 @@ func create_grid():
 	
 	for x in level_size.x:
 		var index = level_size.y - 1
-		yield(get_tree().create_timer(0.1), "timeout")
 		for y in level_size.y:
 			var figureId = GetWeightedFigureId(matrix, x, y)
 			var end_position = Vector2(offset + (tile_size * x), -(tile_size * index) - 250)
@@ -75,6 +74,7 @@ func create_grid():
 			$Tiles.add_child(tile)
 			
 			matrix[x][y] = tile
+		yield(get_tree().create_timer(0.1), "timeout")
 			
 		var detector = preload("res://Utils/ColumnDetector.tscn").instance()
 		detector.position = Vector2(offset + (tile_size * x), tile_size * level_size.y)
@@ -111,9 +111,6 @@ func HandleMatchTiles(tile):
 	if group_count >= match_count:
 		CreateLabelForMatch(tile, group_count)
 		OnMatch(tile, group_count)
-		
-#		yield(get_tree().create_timer(0.2), "timeout")
-#		var currentTiles = $Detectors.get_child(0).GetCurrentTilesCount()
 	
 	tile.UnmarkMatchingGroup()
 

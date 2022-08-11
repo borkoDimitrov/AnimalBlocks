@@ -18,5 +18,5 @@ func OnMatch(tile, count):
 func CountTiles(tileCount):
 	current_tiles -= tileCount
 	if current_tiles == 0:
-		LevelWon()
+		.LevelWon()
 	

@@ -4,7 +4,6 @@ signal DESTROY_TILE(tile)
 
 func HandleTileClick(tile) -> bool:
 	emit_signal("DESTROY_TILE", tile)
-	tile.DestroyBlock()
 	
 	UseSkill()
 	DeactivateSkill()
