@@ -12,6 +12,9 @@ func DestroyTile(tile):
 	.DestroyTile(tile)
 	
 func OnMatch(tile, count):
+	current_score += pow(count, 2)
+	$"%Label".text = "SCORE: " + str(current_score)
+	
 	CountTiles(count)
 	.OnMatch(tile, count)
 

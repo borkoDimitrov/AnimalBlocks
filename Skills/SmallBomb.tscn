@@ -8,15 +8,14 @@
 script = ExtResource( 3 )
 
 [node name="TextureButton" parent="." index="0"]
-margin_left = -23.0
-margin_top = -22.0
-margin_right = 22.0
-margin_bottom = 25.0
+margin_left = -42.0
+margin_top = -40.0
+margin_right = 38.0
 texture_normal = ExtResource( 1 )
 expand = true
 
 [node name="RichTextLabel" parent="." index="1"]
 margin_left = -1.0
-margin_top = -39.0
+margin_top = -67.0
 margin_right = 22.0
-margin_bottom = -23.0
+margin_bottom = -51.0

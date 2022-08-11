@@ -14,6 +14,8 @@
 
 [sub_resource type="DynamicFont" id=3]
 size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -21,7 +23,7 @@ extents = Vector2( 2000, 10 )
 
 [node name="Level" type="Node2D" groups=["level"]]
 script = ExtResource( 1 )
-level_size = Vector2( 12, 10 )
+level_size = Vector2( 13, 10 )
 number_of_animals = 2
 weight = 0.3
 
@@ -35,6 +37,13 @@ margin_right = 1024.0
 margin_bottom = 600.0
 texture = ExtResource( 4 )
 expand = true
+
+[node name="TilesBackground" type="ColorRect" parent="CanvasLayer"]
+margin_left = 155.0
+margin_top = 63.0
+margin_right = 806.0
+margin_bottom = 555.0
+color = Color( 0.631373, 0.752941, 0.596078, 0 )
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -51,15 +60,15 @@ unique_name_in_owner = true
 
 [node name="SwapTiles" parent="CanvasLayer/Skills" instance=ExtResource( 9 )]
 unique_name_in_owner = true
-position = Vector2( 42, 441 )
+position = Vector2( 48, 313 )
 
 [node name="SmallBomb" parent="CanvasLayer/Skills" instance=ExtResource( 7 )]
 unique_name_in_owner = true
-position = Vector2( 41, 517 )
+position = Vector2( 67, 468 )
 
 [node name="MatchTwoTiles" parent="CanvasLayer/Skills" instance=ExtResource( 8 )]
 unique_name_in_owner = true
-position = Vector2( 41, 368 )
+position = Vector2( 53, 186 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 0, 1600 )

@@ -25,7 +25,7 @@ func _ready():
 func refresh_level():
 	make_tile_types()
 	create_grid()
-	$Floor.position.y = tile_size * level_size.y
+	$Floor.position.y = (tile_size * level_size.y) + 70
 	
 func GetWeightedFigureId(matrix, x, y):
 	var neighbours = Globals.GetNeighbours(matrix, x, y)
@@ -65,7 +65,7 @@ func create_grid():
 		var index = level_size.y - 1
 		for y in level_size.y:
 			var figureId = GetWeightedFigureId(matrix, x, y)
-			var end_position = Vector2(offset + (tile_size * x), -(tile_size * index) - 250)
+			var end_position = Vector2( (tile_size * x), -(tile_size * index) - 250)
 			index -= 1
 			
 			var tile = load(figureId).instance()
@@ -77,10 +77,13 @@ func create_grid():
 		yield(get_tree().create_timer(0.1), "timeout")
 			
 		var detector = preload("res://Utils/ColumnDetector.tscn").instance()
-		detector.position = Vector2(offset + (tile_size * x), tile_size * level_size.y)
+		detector.position = Vector2((tile_size * x), tile_size * level_size.y)
 		detector.cast_to = Vector2(0, (tile_size * -level_size.y))
 		$Detectors.add_child(detector)
 		
+	var tween := create_tween()
+	tween.tween_property($CanvasLayer/TilesBackground, "color:a", 0.3, 0.7).from(0.0)
+	
 	get_tree().call_group("tiles", "EnableBlockButton")
 
 	for x in level_size.x:
@@ -115,9 +118,6 @@ func HandleMatchTiles(tile):
 	tile.UnmarkMatchingGroup()
 
 func OnMatch(tile, count):
-	current_score += pow(count, 2)
-	$"%Label".text = "SCORE: " + str(current_score)
-	
 	$AudioPlayer.play_sound()
 	get_tree().call_group("matched", "VanishBlock")
 	get_tree().call_group("detectors", "DetectBlocks")

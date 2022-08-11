@@ -13,13 +13,13 @@ __meta__ = {
 [node name="TextureButton" parent="." index="0"]
 margin_left = -23.0
 margin_top = -23.0
-margin_right = 22.0
-margin_bottom = 24.0
+margin_right = 57.0
+margin_bottom = 57.0
 texture_normal = ExtResource( 2 )
 expand = true
 
 [node name="RichTextLabel" parent="." index="1"]
-margin_left = -4.0
-margin_top = -39.0
-margin_right = 25.0
-margin_bottom = -23.0
+margin_left = 7.0
+margin_top = -48.0
+margin_right = 36.0
+margin_bottom = -32.0

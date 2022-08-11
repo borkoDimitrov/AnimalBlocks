@@ -87,6 +87,7 @@ collision_mask = 3
 mode = 2
 mass = 75.0
 gravity_scale = 20.0
+contact_monitor = true
 can_sleep = false
 script = ExtResource( 2 )
 
