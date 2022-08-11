@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Utils/AudioPlayer.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Skills/SmallBomb.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Skills/MatchTwoTiles.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Skills/SwapTiles.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Sprites/UI/TargetBackground.png" type="Texture" id=10]
 
 [sub_resource type="Theme" id=2]
 
@@ -38,12 +39,22 @@ margin_bottom = 600.0
 texture = ExtResource( 4 )
 expand = true
 
-[node name="TilesBackground" type="ColorRect" parent="CanvasLayer"]
+[node name="TilesBackground" type="TextureRect" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 149.0
+margin_top = 59.0
+margin_right = 823.0
+margin_bottom = 576.0
+texture = ExtResource( 10 )
+expand = true
+
+[node name="TilesBackground2" type="ColorRect" parent="CanvasLayer"]
+visible = false
 margin_left = 155.0
 margin_top = 63.0
 margin_right = 806.0
 margin_bottom = 555.0
-color = Color( 0.631373, 0.752941, 0.596078, 0 )
+color = Color( 0.631373, 0.752941, 0.596078, 0.443137 )
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -64,7 +75,7 @@ position = Vector2( 48, 313 )
 
 [node name="SmallBomb" parent="CanvasLayer/Skills" instance=ExtResource( 7 )]
 unique_name_in_owner = true
-position = Vector2( 67, 468 )
+position = Vector2( 67, 479 )
 
 [node name="MatchTwoTiles" parent="CanvasLayer/Skills" instance=ExtResource( 8 )]
 unique_name_in_owner = true

@@ -23,6 +23,9 @@ func RemoveFromGroup():
 func EnableBlockButton():
 	$TextureButton.disabled = false
 
+func DisableBlockButton():
+	$TextureButton.disabled = true
+
 func MarkMatchingGroup() -> int:
 	var count = [0]
 	AddToGroup(count)

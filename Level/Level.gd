@@ -82,7 +82,7 @@ func create_grid():
 		$Detectors.add_child(detector)
 		
 	var tween := create_tween()
-	tween.tween_property($CanvasLayer/TilesBackground, "color:a", 0.3, 0.7).from(0.0)
+	tween.tween_property($CanvasLayer/TilesBackground, "modulate:a", 1.0, 1.5).from(0.0)
 	
 	get_tree().call_group("tiles", "EnableBlockButton")
 
@@ -101,7 +101,6 @@ func SpawnTiles(count, position):
 		var end_position = Vector2(position.x, -250 -(index * 140))
 		tile.position = end_position
 		$Tiles.add_child(tile)
-	get_tree().call_group("tiles", "EnableBlockButton")
 
 func HandleTileClicked(tile):
 	for skill in $"%Skills".get_children():

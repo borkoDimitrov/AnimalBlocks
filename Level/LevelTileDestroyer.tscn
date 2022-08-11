@@ -1,16 +1,70 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level/LevelTileDestroyer.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/CHUBBY.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://normal_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/Sprites/UI/TargetBackground.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 35
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
 
 [node name="LevelTileDestroyer" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-level_size = Vector2( 10, 10 )
-number_of_animals = 4
-weight = 0.2
+number_of_animals = 5
+weight = 0.1
 TARGET_TILE_MATCH = 7
 TARGET_TILE_MATCH_COUNT = 5
 SPAWN_TILE_DESTROYER = 3
 
-[node name="SmallBomb" parent="CanvasLayer/Skills" index="1"]
-skill_uses_left = 20
+[node name="Label" parent="CanvasLayer" index="3"]
+margin_left = 254.0
+margin_top = 13.0
+margin_right = 440.0
+margin_bottom = 51.0
+
+[node name="Rules" type="Label" parent="CanvasLayer" index="4"]
+unique_name_in_owner = true
+margin_left = 477.0
+margin_top = 15.0
+margin_right = 658.0
+margin_bottom = 63.0
+custom_fonts/font = ExtResource( 4 )
+text = "Match 7 or more"
+
+[node name="MatchContainer" type="Node2D" parent="CanvasLayer" index="5"]
+position = Vector2( 934, 256 )
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/MatchContainer" index="0"]
+margin_left = -82.0
+margin_top = -22.0
+margin_right = 85.0
+margin_bottom = 52.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MatchContainer" index="1"]
+margin_left = -76.0
+margin_top = -19.0
+margin_right = 80.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 2 )
+text = "MATCHES LEFT:"
+
+[node name="MatchLeft" type="Label" parent="CanvasLayer/MatchContainer" index="2"]
+unique_name_in_owner = true
+margin_left = -7.0
+margin_top = 5.0
+margin_right = 23.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 3 )
+text = "5"
