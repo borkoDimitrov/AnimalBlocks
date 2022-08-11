@@ -93,6 +93,16 @@ func create_grid():
 		player.play_sound()
 		player.connect("finished", player, "queue_free")
 
+func SpawnTiles(count, position):
+	for index in range(count):
+		var figureId = possible_tiles[randi() % number_of_animals]
+		var tile = load(figureId).instance()
+		tile.tile_info = figureId
+		var end_position = Vector2(position.x, -250 -(index * 140))
+		tile.position = end_position
+		$Tiles.add_child(tile)
+	get_tree().call_group("tiles", "EnableBlockButton")
+
 func HandleTileClicked(tile):
 	for skill in $"%Skills".get_children():
 		if skill.IsActive() and skill.HandleTileClick(tile):

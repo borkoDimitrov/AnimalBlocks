@@ -1,5 +1,7 @@
 extends RayCast2D
 
+onready var timer = $Timer
+
 func DetectBlocks():
 	$Timer.start()
 

@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="DeerBlocks"
-run/main_scene="res://Level/LevelTileCount.tscn"
+run/main_scene="res://Level/LevelTileDestroyer.tscn"
 
 [autoload]
 

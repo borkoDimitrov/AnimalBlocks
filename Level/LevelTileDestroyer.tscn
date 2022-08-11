@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Level/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Level/LevelTileDestroyer.gd" type="Script" id=2]
+
+[node name="LevelTileDestroyer" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+level_size = Vector2( 10, 10 )
+number_of_animals = 4
+weight = 0.2
+TARGET_TILE_MATCH = 7
+TARGET_TILE_MATCH_COUNT = 5
+SPAWN_TILE_DESTROYER = 3
+
+[node name="SmallBomb" parent="CanvasLayer/Skills" index="1"]
+skill_uses_left = 20

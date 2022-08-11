@@ -38,16 +38,6 @@ func OnMatch(tile, count):
 			tilesToSpawn = min(3, tilesToSpawn)
 			yield(get_tree().create_timer(0.1), "timeout")
 			SpawnTiles(tilesToSpawn, detector.position)
-		get_tree().call_group("tiles", "EnableBlockButton")
-
-func SpawnTiles(count, position):
-	for index in range(count):
-		var figureId = possible_tiles[randi() % number_of_animals]
-		var tile = load(figureId).instance()
-		tile.tile_info = figureId
-		var end_position = Vector2(position.x, -250 -(index * 140))
-		tile.position = end_position
-		$Tiles.add_child(tile)
 	
 	
 func DestroyTile(tile):
@@ -68,11 +58,5 @@ func CountTiles(tileType, tileCount):
 		ReduceTileCount(tileCount)
 		if tiles_left_count <= 0:
 			.LevelWon()
-
-func _input(event):
-	if event.is_action_pressed("mouse_button_right"):
-		var test = load("res://TileDestroyer.tscn").instance()
-		add_child(test)
-		test.global_position = get_global_mouse_position()
 	
 
