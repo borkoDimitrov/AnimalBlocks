@@ -38,10 +38,10 @@ expand = true
 
 [node name="TilesBackground" type="TextureRect" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 149.0
-margin_top = 59.0
-margin_right = 823.0
-margin_bottom = 576.0
+margin_left = 140.0
+margin_top = 52.0
+margin_right = 829.0
+margin_bottom = 583.0
 texture = ExtResource( 10 )
 expand = true
 

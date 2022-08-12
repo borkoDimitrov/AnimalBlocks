@@ -1,8 +1,8 @@
 extends "res://Level/Level.gd"
 
 # FOR WINNING LEVEL
-export var TARGET_TILE_MATCH = 7
-export var TARGET_TILE_MATCH_COUNT = 5
+export var TARGET_TILE_MATCH = 10
+export var TARGET_TILE_MATCH_COUNT = 7
 var current_tile_match = TARGET_TILE_MATCH_COUNT
 
 # FOR SPAWNING TILE DESTROYER
@@ -10,6 +10,7 @@ export var SPAWN_TILE_DESTROYER : int = 3
 var current_match_count = SPAWN_TILE_DESTROYER
 
 func _ready():
+	randomize()
 	$"%Rules".text = "MATCH " + str(TARGET_TILE_MATCH) + " OR MORE"
 	$"%MatchLeft".text = str(TARGET_TILE_MATCH_COUNT)
 
@@ -32,8 +33,6 @@ func OnMatch(tile, count):
 		SpawnTileDestroyer()
 		
 func SpawnTileDestroyer():
-	get_tree().call_group("tiles", "DisableBlockButton")
-	
 	var randIdx = randi() % $Detectors.get_child_count()
 	var detector = $Detectors.get_child(randIdx)
 	while detector.GetCurrentTilesCount() <= 0:
