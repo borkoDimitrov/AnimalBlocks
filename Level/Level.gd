@@ -18,6 +18,11 @@ func _ready():
 	for skill in $"%Skills".get_children():
 		skill.connect("HANDLE_SKILL_ACTIVATION", self, "HandleSkillActivation")
 #	$MusicPlayer.pick_song()
+
+
+func initialize(_number_of_animals, _weight):
+	number_of_animals = _number_of_animals
+	weight = _weight
 	
 	randomize()
 	refresh_level()
@@ -146,7 +151,8 @@ func CreateLabelForMatch(tile, count):
 	var pos = score.rect_position
 	var tweenDelay = 0.5
 	
-	var tween := create_tween().set_parallel(true)
+	var tween := create_tween()
+	tween.set_parallel(true)
 	tween.tween_property(score, "rect_position", Vector2(pos.x - 20, pos.y - 150),tweenDelay).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).from(Vector2(pos.x - 10, pos.y - 70))
 	tween.tween_property(score, "rect_scale", Vector2(0.5,0.5), tweenDelay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	tween.tween_property(score, "modulate:a", 0.4, tweenDelay)
@@ -158,10 +164,9 @@ func CountSkillsScore():
 	current_score += $"%SmallBomb".skill_uses_left * 50
 
 func LevelWon():
-	print("LEVEL WON")
 	yield(get_tree().create_timer(1), "timeout")
 	CountSkillsScore()
 	$"%Label".text = "SCORE: " + str(current_score)
 	
-	yield(get_tree().create_timer(5), "timeout")
-	get_tree().reload_current_scene()
+	yield(get_tree().create_timer(1), "timeout")
+	Globals.emit_signal("HANDLE_LEVEL_WON")

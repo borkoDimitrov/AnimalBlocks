@@ -3,7 +3,8 @@ extends "res://Level/Level.gd"
 var max_tiles : int
 var current_tiles : int
 
-func _ready():
+func initializeClassicLevel(_number_of_animals, _weight):
+	.initialize(_number_of_animals, _weight)
 	max_tiles = level_size.x * level_size.y
 	current_tiles = level_size.x * level_size.y
 

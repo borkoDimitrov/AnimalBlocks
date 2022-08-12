@@ -4,6 +4,7 @@ const TILE_SIZE = 140
 
 var first_block : RigidBody2D
 
+signal HANDLE_LEVEL_WON
 signal HANDLE_TILE_CLICKED(tile)
 
 func create_2d_vector(vec : Vector2):

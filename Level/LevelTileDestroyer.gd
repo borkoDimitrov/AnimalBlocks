@@ -8,9 +8,12 @@ var current_tile_match = TARGET_TILE_MATCH_COUNT
 # FOR SPAWNING TILE DESTROYER
 export var SPAWN_TILE_DESTROYER : int = 3
 var current_match_count = SPAWN_TILE_DESTROYER
+	
+func initializeTileDestroyer(_number_of_animals, _weight, _big_matches_count, _big_matches_size):
+	.initialize(_number_of_animals, _weight)
+	TARGET_TILE_MATCH = _big_matches_size
+	TARGET_TILE_MATCH_COUNT = _big_matches_count
 
-func _ready():
-	randomize()
 	$"%Rules".text = "MATCH " + str(TARGET_TILE_MATCH) + " OR MORE"
 	$"%MatchLeft".text = str(TARGET_TILE_MATCH_COUNT)
 
