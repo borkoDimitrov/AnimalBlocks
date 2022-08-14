@@ -10,3 +10,12 @@ weight = 0.5
 
 [node name="TextureRect" parent="CanvasLayer" index="0"]
 texture = ExtResource( 3 )
+
+[node name="SwapTiles" parent="CanvasLayer/Skills" index="0"]
+position = Vector2( 70, 300 )
+
+[node name="SmallBomb" parent="CanvasLayer/Skills" index="1"]
+position = Vector2( 70, 460 )
+
+[node name="MatchTwoTiles" parent="CanvasLayer/Skills" index="2"]
+position = Vector2( 70, 150 )

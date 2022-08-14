@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Sprites/CartoonForest3.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/UI/button.png" type="Texture" id=2]
+[ext_resource path="res://normal_font.tres" type="DynamicFont" id=3]
+
+[node name="StartMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="ClassicGame" type="TextureButton" parent="."]
+margin_left = 397.0
+margin_top = 151.0
+margin_right = 628.0
+margin_bottom = 242.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="ClassicGame"]
+margin_left = 27.0
+margin_top = 28.0
+margin_right = 205.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 3 )
+text = "CLASSIC GAME"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Survival" type="TextureButton" parent="."]
+margin_left = 403.0
+margin_top = 272.0
+margin_right = 618.0
+margin_bottom = 355.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="Survival"]
+margin_left = 43.0
+margin_top = 23.0
+margin_right = 173.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 3 )
+text = "SURVIVAL"
+
+[node name="Survival2" type="TextureButton" parent="."]
+margin_left = 412.0
+margin_top = 384.0
+margin_right = 603.0
+margin_bottom = 456.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="Survival2"]
+margin_left = 63.0
+margin_top = 19.0
+margin_right = 132.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 3 )
+text = "EXIT"

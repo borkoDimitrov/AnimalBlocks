@@ -65,5 +65,4 @@ func CountTiles(tileType, tileCount):
 		ReduceTileCount(tileCount)
 		if tiles_left_count <= 0:
 			.LevelWon()
-	
 

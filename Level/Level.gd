@@ -17,6 +17,7 @@ func _ready():
 	$"%MatchTwoTiles".connect("HANDLE_SET_MATCH_COUNT", self, "HandleSetMatchCount")
 	for skill in $"%Skills".get_children():
 		skill.connect("HANDLE_SKILL_ACTIVATION", self, "HandleSkillActivation")
+	$CanvasLayer/LevelRestart.connect("pressed", self, "OnLevelRestartPressed")
 #	$MusicPlayer.pick_song()
 
 
@@ -115,7 +116,7 @@ func HandleTileClicked(tile):
 	
 	HandleMatchTiles(tile)
 		
-func HandleSkillActivation(current_skill):
+func HandleSkillActivation(current_skill):\
 	for skill in $"%Skills".get_children():
 		if skill != current_skill:
 			skill.DeactivateSkill()
@@ -171,3 +172,6 @@ func LevelWon():
 	
 	yield(get_tree().create_timer(1), "timeout")
 	Globals.emit_signal("HANDLE_LEVEL_WON")
+	
+func OnLevelRestartPressed():
+	get_tree().reload_current_scene()

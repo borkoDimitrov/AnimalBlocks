@@ -4,7 +4,6 @@ signal HANDLE_SKILL_ACTIVATION(current_skill)
 
 export (int) var skill_uses_left = 3
 var is_active = false
-var rotation_speed = 0
 
 func _ready():
 	$RichTextLabel.text = str(skill_uses_left)
@@ -21,11 +20,11 @@ func ActivateSkill():
 		
 	emit_signal("HANDLE_SKILL_ACTIVATION", self)
 	is_active = true
-	rotation_speed = 5
+	$AnimationPlayer.play("Pulse")
 
 func DeactivateSkill():
 	is_active = false
-	rotation_speed = 0
+	$AnimationPlayer.play("RESET")
 	rotation = 0
 	
 func IsActive() -> bool:
@@ -46,6 +45,3 @@ func OnMatchMade():
 	
 func HandleTileClick(_tile) -> bool:
 	return false
-		
-func _physics_process(delta):
-	rotate(rotation_speed * delta)

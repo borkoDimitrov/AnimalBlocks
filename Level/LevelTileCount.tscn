@@ -48,7 +48,7 @@ margin_bottom = 59.0
 position = Vector2( 898, 285 )
 
 [node name="Background" type="TextureRect" parent="CanvasLayer/MatchContainer" index="0"]
-modulate = Color( 1, 1, 1, 0.792157 )
+modulate = Color( 1, 1, 1, 0.894118 )
 margin_left = -65.0
 margin_top = -54.0
 margin_right = 73.0
@@ -71,3 +71,12 @@ position = Vector2( 1, 13 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="SwapTiles" parent="CanvasLayer/Skills" index="0"]
+position = Vector2( 70, 300 )
+
+[node name="SmallBomb" parent="CanvasLayer/Skills" index="1"]
+position = Vector2( 70, 460 )
+
+[node name="MatchTwoTiles" parent="CanvasLayer/Skills" index="2"]
+position = Vector2( 70, 150 )

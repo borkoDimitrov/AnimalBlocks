@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Utils/AudioPlayer.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/CHUBBY.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/Sprites/CartoonForest.png" type="Texture" id=4]
 [ext_resource path="res://Utils/MusicPlayer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Sprites/UI/restart.png" type="Texture" id=6]
 [ext_resource path="res://Skills/SmallBomb.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Skills/MatchTwoTiles.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Skills/SwapTiles.tscn" type="PackedScene" id=9]
@@ -69,6 +70,14 @@ position = Vector2( 67, 479 )
 [node name="MatchTwoTiles" parent="CanvasLayer/Skills" instance=ExtResource( 8 )]
 unique_name_in_owner = true
 position = Vector2( 53, 186 )
+
+[node name="LevelRestart" type="TextureButton" parent="CanvasLayer"]
+margin_left = 860.0
+margin_top = 55.0
+margin_right = 940.0
+margin_bottom = 135.0
+texture_normal = ExtResource( 6 )
+expand = true
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 0, 1600 )

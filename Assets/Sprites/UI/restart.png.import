@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2Star.png-50656d3c93d0bccd324643da0a4aff58.stex"
+path="res://.import/restart.png-51d7392c2416d8107c3d38215aeab708.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Icons/2Star.png"
-dest_files=[ "res://.import/2Star.png-50656d3c93d0bccd324643da0a4aff58.stex" ]
+source_file="res://Assets/Sprites/UI/restart.png"
+dest_files=[ "res://.import/restart.png-51d7392c2416d8107c3d38215aeab708.stex" ]
 
 [params]
 
