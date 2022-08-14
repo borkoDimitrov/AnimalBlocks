@@ -11,6 +11,8 @@ func initializeTileCounter(_number_of_animals, _weight, _target_tile_count, _ref
 	.initialize(_number_of_animals, _weight)
 	TARGET_TILE_COUNT = _target_tile_count
 	REFILMENT_MATCH_COUNT = _refilment_match_count
+	tiles_left_count = TARGET_TILE_COUNT
+	current_match_count = REFILMENT_MATCH_COUNT
 	
 	var firstTile = $Tiles.get_child(0)
 	main_tile_id = firstTile.tile_info
@@ -44,7 +46,6 @@ func OnMatch(tile, count):
 			tilesToSpawn = min(3, tilesToSpawn)
 			yield(get_tree().create_timer(0.1), "timeout")
 			SpawnTiles(tilesToSpawn, detector.position)
-	
 	
 func DestroyTile(tile):
 	.DestroyTile(tile)

@@ -1,5 +1,6 @@
 extends Node
 
+var levelDificulty = 0
 var levelTypeIndex = 0
 
 onready var levels = [
@@ -16,8 +17,9 @@ func HandleLevelWon():
 	StartNextLevel()
 	
 func StartNextLevel():
-	var levelDificulty = levelTypeIndex / levels.size()
-	var level = levels[levelTypeIndex % levels.size()]
+	levelDificulty = levelTypeIndex / levels.size()
+	var level = levels[1]
+#	var level = levels[levelTypeIndex % levels.size()]
 	var level_path = level.resource_path
 	
 	for child in get_children():
@@ -30,12 +32,77 @@ func StartNextLevel():
 	elif level_path == "res://Level/LevelTileCount.tscn":
 		var scene = level.instance()
 		add_child(scene)
-		scene.initializeTileCounter(2, 0.7, 30, 7)
+		scene.initializeTileCounter(7, 0.0, 30, 3)
+		# EASY
+		# 2, 0.3, 50, 5
+		# 3, 0.3, 40, 5
+		# 4, 0.3, 30, 5
+		# 5, 0.3, 20, 5
+		# 6, 0.3, 15, 5
+		# 7, 0.3, 10, 5
+		
+		# NORMAL
+		# 2, 0.3, 50, 7
+		# 3, 0.3, 40, 7
+		# 4, 0.3, 30, 7
+		# 5, 0.3, 20, 7
+		# 6, 0.3, 15, 7
+		# 7, 0.3, 10, 7
+		
+		# HARD
+		# 2, 0.1, 50, 5
+		# 3, 0.1, 50, 5
+		# 4, 0.1, 40, 5
+		# 5, 0.1, 30, 5
+		# 6, 0.1, 25, 5
+		# 7, 0.1, 20, 5
+		
+		# EXPERT
+		# 2, 0.0, 60, 5
+		# 3, 0.0, 50, 5
+		# 4, 0.0, 50, 3
+		# 5, 0.0, 40, 4
+		# 6, 0.0, 35, 3
+		# 7, 0.0, 30, 3
 	elif level_path == "res://Level/LevelTileDestroyer.tscn":
 		var scene = level.instance()
 		add_child(scene)
-		scene.initializeTileDestroyer(2, 0.7, 7, 10)
-
-#func _input(event):
-#	if event.is_action_pressed("mouse_button_right"):
-#		get_tree().change_scene(levels[1])
+		scene.initializeTileDestroyer(7, 0.1, 10, 5)
+		# EASY
+		# 2, 0.3, 3, 10
+		# 3, 0.3, 5, 9
+		# 4, 0.3, 5, 10
+		# 5, 0.3, 7, 7
+		# 6, 0.3, 5, 7
+		# 7, 0.3, 9, 6 maybe?
+		
+		# NORMAL
+		# 2, 0.2, 6, 10
+		# 3, 0.2, 9, 9
+		# 4, 0.2, 9, 7
+		# 5, 0.2, 9, 6
+		# 6, 0.2, 9, 6
+		# 7, 0.2, 8, 6
+		
+		# HARD
+		# 2, 0.1, 6, 10
+		# 3, 0.1, 8, 8
+		# 4, 0.1, 8, 7
+		# 5, 0.1, 7, 7
+		# 6, 0.1, 7, 6
+		# 7, 0.1, 10, 5
+		
+		# EXPERT
+		# 2, 0.0, 6, 10
+		# 3, 0.0, 7, 9
+		# 4, 0.0, 7, 7
+		# 5, 0.0, 9, 6
+		# 6, 0.0, 11, 5
+		# 7, 0.0, 13, 4
+		
+		
+		
+		
+		
+		
+		

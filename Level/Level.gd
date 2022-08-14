@@ -106,6 +106,7 @@ func SpawnTiles(count, position):
 		var end_position = Vector2(position.x, -250 -(index * 140))
 		tile.position = end_position
 		$Tiles.add_child(tile)
+	get_tree().call_group("tiles", "EnableBlockButton")
 
 func HandleTileClicked(tile):
 	for skill in $"%Skills".get_children():
