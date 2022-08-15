@@ -1,15 +1,55 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Utils/AudioPlayer.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/CHUBBY.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/Sprites/CartoonForest.png" type="Texture" id=4]
-[ext_resource path="res://Utils/MusicPlayer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Music/Tracks/bump.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Sprites/UI/restart.png" type="Texture" id=6]
 [ext_resource path="res://Skills/SmallBomb.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Skills/MatchTwoTiles.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Skills/SwapTiles.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Sprites/UI/TargetBackground.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_13.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_22.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_33.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_27.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_30.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_31.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_10.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_16.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_19.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_37.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_36.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_39.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_14.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_28.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_12.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_38.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_23.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_32.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_11.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_25.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_35.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_21.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_09.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_17.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_24.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_26.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_08.png" type="Texture" id=37]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_15.png" type="Texture" id=38]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_20.png" type="Texture" id=39]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_29.png" type="Texture" id=40]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_34.png" type="Texture" id=41]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_07.png" type="Texture" id=42]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_18.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_06.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_00.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_01.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_03.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_04.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_02.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Sprites/UI/StageCleared/StageCleared_05.png" type="Texture" id=50]
 
 [sub_resource type="Theme" id=2]
 
@@ -21,6 +61,14 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2000, 10 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 45 ), ExtResource( 46 ), ExtResource( 49 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 50 ), ExtResource( 44 ), ExtResource( 42 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 17 ), ExtResource( 29 ), ExtResource( 25 ), ExtResource( 11 ), ExtResource( 23 ), ExtResource( 38 ), ExtResource( 18 ), ExtResource( 34 ), ExtResource( 43 ), ExtResource( 19 ), ExtResource( 39 ), ExtResource( 32 ), ExtResource( 12 ), ExtResource( 27 ), ExtResource( 35 ), ExtResource( 30 ), ExtResource( 36 ), ExtResource( 14 ), ExtResource( 24 ), ExtResource( 40 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 28 ), ExtResource( 13 ), ExtResource( 41 ), ExtResource( 31 ), ExtResource( 21 ), ExtResource( 20 ), ExtResource( 26 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
 
 [node name="Level" type="Node2D" groups=["level"]]
 script = ExtResource( 1 )
@@ -97,4 +145,13 @@ zoom = Vector2( 3, 3 )
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
 script = ExtResource( 2 )
 
-[node name="MusicPlayer" parent="." instance=ExtResource( 5 )]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 823, 538 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 4 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

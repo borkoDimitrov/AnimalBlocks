@@ -18,7 +18,6 @@ func _ready():
 	for skill in $"%Skills".get_children():
 		skill.connect("HANDLE_SKILL_ACTIVATION", self, "HandleSkillActivation")
 	$CanvasLayer/LevelRestart.connect("pressed", self, "OnLevelRestartPressed")
-#	$MusicPlayer.pick_song()
 
 
 func initialize(_number_of_animals, _weight):
@@ -130,6 +129,8 @@ func HandleMatchTiles(tile):
 	if group_count >= match_count:
 		CreateLabelForMatch(tile, group_count)
 		OnMatch(tile, group_count)
+	else:
+		$AudioStreamPlayer2D.play()
 	
 	tile.UnmarkMatchingGroup()
 
@@ -166,12 +167,18 @@ func CountSkillsScore():
 	current_score += $"%SmallBomb".skill_uses_left * 50
 
 func LevelWon():
-	yield(get_tree().create_timer(1), "timeout")
-	CountSkillsScore()
-	$"%Label".text = "SCORE: " + str(current_score)
+	get_tree().call_group("tiles", "DisableBlockButton")
 	
 	yield(get_tree().create_timer(1), "timeout")
-	Globals.emit_signal("HANDLE_LEVEL_WON")
+	CountSkillsScore()
+	
+	$"%Label".text = "SCORE: " + str(current_score)
+	$AnimatedSprite.show()
+	$AnimatedSprite.play()
 	
 func OnLevelRestartPressed():
 	get_tree().reload_current_scene()
+
+
+func _on_AnimatedSprite_animation_finished():
+	Globals.emit_signal("HANDLE_LEVEL_WON")

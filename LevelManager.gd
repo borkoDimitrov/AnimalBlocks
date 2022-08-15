@@ -3,6 +3,16 @@ extends Node
 var levelDificulty = 0
 var levelTypeIndex = 0
 
+var tileDestroyerEasy = {
+	0 : [2, 0.3, 50, 5],
+	1 : [3, 0.3, 5, 9]
+}
+var tileDestroyerHard = {
+	0 : [4, 0.3, 50, 5],
+	1 : [5, 0.3, 5, 9]
+}
+var tileDestroyerDiff = [tileDestroyerEasy, tileDestroyerHard]
+
 onready var levels = [
 	preload("res://Level/ClassicLevel.tscn"),
 	preload("res://Level/LevelTileCount.tscn"),
@@ -18,7 +28,7 @@ func HandleLevelWon():
 	
 func StartNextLevel():
 	levelDificulty = levelTypeIndex / levels.size()
-	var level = levels[1]
+	var level = levels[2]
 #	var level = levels[levelTypeIndex % levels.size()]
 	var level_path = level.resource_path
 	
@@ -32,7 +42,7 @@ func StartNextLevel():
 	elif level_path == "res://Level/LevelTileCount.tscn":
 		var scene = level.instance()
 		add_child(scene)
-		scene.initializeTileCounter(7, 0.0, 30, 3)
+		scene.initializeTileCounter(2, 0.0, 30, 3)
 		# EASY
 		# 2, 0.3, 50, 5
 		# 3, 0.3, 40, 5
@@ -67,7 +77,8 @@ func StartNextLevel():
 	elif level_path == "res://Level/LevelTileDestroyer.tscn":
 		var scene = level.instance()
 		add_child(scene)
-		scene.initializeTileDestroyer(7, 0.1, 10, 5)
+		var levelDif = tileDestroyerDiff[0][1]
+		scene.initializeTileDestroyer(levelDif[0], levelDif[1], levelDif[2], levelDif[3])
 		# EASY
 		# 2, 0.3, 3, 10
 		# 3, 0.3, 5, 9
