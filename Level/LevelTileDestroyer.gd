@@ -16,6 +16,7 @@ func initializeTileDestroyer(_number_of_animals, _weight, _big_matches_count, _b
 	current_tile_match = TARGET_TILE_MATCH_COUNT
 
 	$"%Rules".text = "MATCH " + str(TARGET_TILE_MATCH) + " OR MORE"
+	$"%BombLeft".text = str(SPAWN_TILE_DESTROYER)
 	$"%MatchLeft".text = str(TARGET_TILE_MATCH_COUNT)
 
 func OnMatch(tile, count):
@@ -34,8 +35,10 @@ func OnMatch(tile, count):
 			return
 		
 	current_match_count -= 1
+	$"%BombLeft".text = str(current_match_count)
 	if current_match_count == 0:
 		current_match_count = SPAWN_TILE_DESTROYER
+		$"%BombLeft".text = str(current_match_count)	
 		SpawnTileDestroyer()
 		
 func SpawnTileDestroyer():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level/LevelTileDestroyer.gd" type="Script" id=2]
@@ -14,6 +14,12 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 35
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
@@ -54,7 +60,7 @@ custom_fonts/font = ExtResource( 4 )
 text = "Match 7 or more"
 
 [node name="MatchContainer" type="Node2D" parent="CanvasLayer" index="5"]
-position = Vector2( 902, 267 )
+position = Vector2( 902, 239 )
 
 [node name="ColorRect" type="TextureRect" parent="CanvasLayer/MatchContainer" index="0"]
 margin_left = -82.0
@@ -89,3 +95,29 @@ text = "5"
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="DestroyContainer" type="Node2D" parent="CanvasLayer" index="6"]
+position = Vector2( 902, 361 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/DestroyContainer" index="0"]
+margin_left = -80.0
+margin_right = 90.0
+margin_bottom = 63.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Label" type="Label" parent="CanvasLayer/DestroyContainer" index="1"]
+margin_left = -67.0
+margin_top = 5.0
+margin_right = 79.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 4 )
+text = "BOMB COMING IN:"
+
+[node name="BombLeft" type="Label" parent="CanvasLayer/DestroyContainer" index="2"]
+unique_name_in_owner = true
+margin_left = -6.0
+margin_top = 24.0
+margin_right = 33.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 4 )

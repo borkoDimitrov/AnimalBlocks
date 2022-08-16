@@ -110,7 +110,7 @@ unique_name_in_owner = true
 
 [node name="SwapTiles" parent="CanvasLayer/Skills" instance=ExtResource( 9 )]
 unique_name_in_owner = true
-position = Vector2( 48, 313 )
+position = Vector2( 55, 315 )
 
 [node name="SmallBomb" parent="CanvasLayer/Skills" instance=ExtResource( 7 )]
 unique_name_in_owner = true

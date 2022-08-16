@@ -20,7 +20,7 @@ func _ready():
 		skill.connect("HANDLE_SKILL_ACTIVATION", self, "HandleSkillActivation")
 	$CanvasLayer/LevelRestart.connect("pressed", self, "OnLevelRestartPressed")
 	$"%CurrentLevel".text = "Level: " + str(get_parent().completedLevelsCount + 1)
-
+	
 func initialize(_number_of_animals, _weight):
 	number_of_animals = _number_of_animals
 	weight = _weight
@@ -174,7 +174,6 @@ func CountSkillsScore():
 
 func LevelWon():
 	get_tree().call_group("tiles", "DisableBlockButton")
-	
 	yield(get_tree().create_timer(1), "timeout")
 	CountSkillsScore()
 	
