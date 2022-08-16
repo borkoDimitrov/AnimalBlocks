@@ -4,6 +4,8 @@ const TILE_SIZE = 140
 
 var first_block : RigidBody2D
 
+var type_of_game = ""
+
 signal HANDLE_LEVEL_WON
 signal RELOAD_CURRENT_LEVEL
 signal HANDLE_TILE_CLICKED(tile)

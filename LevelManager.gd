@@ -5,15 +5,25 @@ var bomb_count : int
 var swap_count : int
 var match_count : int
 
-onready var levels = [
-	preload("res://Level/ClassicLevel.tscn"),
-	preload("res://Level/LevelTileCount.tscn"),
-	preload("res://Level/LevelTileDestroyer.tscn")]
+onready var levels = []
 
 func _ready():
 	Globals.connect("HANDLE_LEVEL_WON", self, "HandleLevelWon")
 	Globals.connect("RELOAD_CURRENT_LEVEL", self, "ReloadCurrentLevel")
+	HandleStartGame()
 	StartLevel()
+	
+func HandleStartGame():
+	if Globals.type_of_game == "normal_game":
+		levels.append(preload("res://Level/ClassicLevel.tscn"))
+		levels.append(preload("res://Level/LevelTileCount.tscn"))
+		levels.append(preload("res://Level/LevelTileDestroyer.tscn"))
+	if Globals.type_of_game == "classic_game":
+		levels.append(preload("res://Level/ClassicLevel.tscn"))
+	if Globals.type_of_game == "count_game":
+		levels.append(preload("res://Level/LevelTileCount.tscn"))
+	if Globals.type_of_game == "match_game":
+		levels.append(preload("res://Level/LevelTileDestroyer.tscn"))
 	
 func HandleLevelWon():
 	completedLevelsCount += 1

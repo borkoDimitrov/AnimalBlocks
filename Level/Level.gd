@@ -105,6 +105,7 @@ func create_grid():
 		player.connect("finished", player, "queue_free")
 
 func SpawnTiles(count, position):
+	get_tree().call_group("detectors", "DisableDetector")
 	for index in range(count):
 		var figureId = possible_tiles[randi() % number_of_animals]
 		var tile = load(figureId).instance()
@@ -113,6 +114,8 @@ func SpawnTiles(count, position):
 		tile.position = end_position
 		$Tiles.add_child(tile)
 	get_tree().call_group("tiles", "EnableBlockButton")
+	yield(get_tree().create_timer(3.0), "timeout")
+	get_tree().call_group("detectors", "EnableDetector")
 
 func HandleTileClicked(tile):
 	for skill in $"%Skills".get_children():

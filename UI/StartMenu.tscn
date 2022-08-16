@@ -16,54 +16,91 @@ margin_bottom = 600.0
 texture = ExtResource( 1 )
 expand = true
 
-[node name="ClassicGame" type="TextureButton" parent="."]
-margin_left = 399.0
-margin_top = 206.0
-margin_right = 630.0
-margin_bottom = 297.0
+[node name="NormalGame" type="TextureButton" parent="."]
+margin_left = 396.0
+margin_top = 99.0
+margin_right = 627.0
+margin_bottom = 190.0
 texture_normal = ExtResource( 2 )
 expand = true
 
-[node name="Label" type="Label" parent="ClassicGame"]
-margin_left = 78.0
-margin_top = 30.0
-margin_right = 256.0
-margin_bottom = 70.0
+[node name="Label" type="Label" parent="NormalGame"]
+margin_left = 29.0
+margin_top = 29.0
+margin_right = 207.0
+margin_bottom = 69.0
 custom_fonts/font = ExtResource( 3 )
-text = "PLAY"
+text = "NORMAL GAME"
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Survival" type="TextureButton" parent="."]
-visible = false
-margin_left = 403.0
-margin_top = 272.0
-margin_right = 618.0
-margin_bottom = 355.0
+[node name="Count" type="TextureButton" parent="."]
+margin_left = 146.0
+margin_top = 295.0
+margin_right = 346.0
+margin_bottom = 370.0
 texture_normal = ExtResource( 2 )
 expand = true
 
-[node name="Label" type="Label" parent="Survival"]
-margin_left = 43.0
-margin_top = 23.0
-margin_right = 173.0
-margin_bottom = 61.0
+[node name="Label" type="Label" parent="Count"]
+margin_left = 16.0
+margin_top = 21.0
+margin_right = 181.0
+margin_bottom = 59.0
 custom_fonts/font = ExtResource( 3 )
-text = "SURVIVAL"
+text = "COUNT TILES"
+
+[node name="Classic" type="TextureButton" parent="."]
+margin_left = 410.0
+margin_top = 293.0
+margin_right = 610.0
+margin_bottom = 368.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="Classic"]
+margin_left = 46.0
+margin_top = 21.0
+margin_right = 176.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 3 )
+text = "CLASSIC"
+
+[node name="MatchMore" type="TextureButton" parent="."]
+margin_left = 686.0
+margin_top = 295.0
+margin_right = 886.0
+margin_bottom = 370.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="MatchMore"]
+margin_left = 29.0
+margin_top = 20.0
+margin_right = 176.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 3 )
+text = "MATCH ANY"
 
 [node name="Exit" type="TextureButton" parent="."]
-margin_left = 412.0
-margin_top = 384.0
-margin_right = 603.0
-margin_bottom = 456.0
+margin_left = 427.0
+margin_top = 457.0
+margin_right = 596.0
+margin_bottom = 522.0
 texture_normal = ExtResource( 2 )
 expand = true
 
 [node name="Label" type="Label" parent="Exit"]
-margin_left = 63.0
-margin_top = 19.0
-margin_right = 132.0
-margin_bottom = 57.0
+margin_left = 52.0
+margin_top = 16.0
+margin_right = 121.0
+margin_bottom = 54.0
 custom_fonts/font = ExtResource( 3 )
 text = "EXIT"
 
-[connection signal="pressed" from="ClassicGame" to="." method="_on_ClassicGame_pressed"]
+[connection signal="pressed" from="NormalGame" to="." method="_on_NormalGame_pressed"]
+[connection signal="pressed" from="Count" to="." method="_on_Count_pressed"]
+[connection signal="pressed" from="Classic" to="." method="_on_Classic_pressed"]
+[connection signal="pressed" from="MatchMore" to="." method="_on_MatchMore_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]

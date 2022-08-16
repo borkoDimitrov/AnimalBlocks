@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="DeerBlocks"
-run/main_scene="res://LevelManager.tscn"
+run/main_scene="res://UI/StartMenu.tscn"
 
 [autoload]
 
