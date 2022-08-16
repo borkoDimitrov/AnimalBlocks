@@ -7,6 +7,7 @@ export var level_size : Vector2 = Vector2(10,10)
 export var number_of_animals : int = 4
 export var match_count : int = 3
 export var weight : float = 0.5
+export var show_number_of_tiles = true
 
 var all_tiles = []
 var possible_tiles = []
@@ -18,7 +19,7 @@ func _ready():
 	for skill in $"%Skills".get_children():
 		skill.connect("HANDLE_SKILL_ACTIVATION", self, "HandleSkillActivation")
 	$CanvasLayer/LevelRestart.connect("pressed", self, "OnLevelRestartPressed")
-
+	$"%CurrentLevel".text = "Level: " + str(get_parent().completedLevelsCount + 1)
 
 func initialize(_number_of_animals, _weight):
 	number_of_animals = _number_of_animals
@@ -26,6 +27,11 @@ func initialize(_number_of_animals, _weight):
 	
 	randomize()
 	refresh_level()
+	
+func SetSkillsCount(matchCount, swapCount, bombCount):
+	$"%MatchTwoTiles".SetSkillCount(matchCount)
+	$"%SwapTiles".SetSkillCount(swapCount)
+	$"%SmallBomb".SetSkillCount(bombCount)
 	
 func refresh_level():
 	make_tile_types()
@@ -60,6 +66,9 @@ func make_tile_types():
 		possible_tiles.append(all_tiles[i])
 	
 func create_grid():
+	var tween := create_tween()
+	tween.tween_property($CanvasLayer/TilesBackground, "modulate:a", 0.9, 1.0).from(0.0).set_delay(1.0)
+	
 	var offset = tile_size / 2
 	$Camera2D.position = Vector2((level_size.x * tile_size + offset) / 2,
 		 (level_size.y * tile_size + offset) / 2)
@@ -85,9 +94,6 @@ func create_grid():
 		detector.position = Vector2((tile_size * x), tile_size * level_size.y)
 		detector.cast_to = Vector2(0, (tile_size * -level_size.y))
 		$Detectors.add_child(detector)
-		
-	var tween := create_tween()
-	tween.tween_property($CanvasLayer/TilesBackground, "modulate:a", 0.9, 1.5).from(0.0)
 	
 	get_tree().call_group("tiles", "EnableBlockButton")
 
@@ -177,8 +183,7 @@ func LevelWon():
 	$AnimatedSprite.play()
 	
 func OnLevelRestartPressed():
-	get_tree().reload_current_scene()
-
+	Globals.emit_signal("RELOAD_CURRENT_LEVEL")
 
 func _on_AnimatedSprite_animation_finished():
-	Globals.emit_signal("HANDLE_LEVEL_WON")
+	Globals.emit_signal("HANDLE_LEVEL_WON") 

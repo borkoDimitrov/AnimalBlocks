@@ -53,6 +53,8 @@ func DestroyTile(tile):
 	
 func ReduceTileCount(count):
 	tiles_left_count = max(0, tiles_left_count - count)
+	if tiles_left_count == 0:
+		$"%TargetTileCount".modulate = Color.green
 	$"%TargetTileCount".text = "TILES LEFT: " + str(tiles_left_count)
 	
 func ReduceRefilmentCount():

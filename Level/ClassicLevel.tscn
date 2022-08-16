@@ -13,6 +13,7 @@ texture = ExtResource( 3 )
 
 [node name="SwapTiles" parent="CanvasLayer/Skills" index="0"]
 position = Vector2( 70, 300 )
+skill_uses_left = 1
 
 [node name="SmallBomb" parent="CanvasLayer/Skills" index="1"]
 position = Vector2( 70, 460 )

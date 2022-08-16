@@ -5,8 +5,9 @@ signal HANDLE_SKILL_ACTIVATION(current_skill)
 export (int) var skill_uses_left = 3
 var is_active = false
 
-func _ready():
-	$RichTextLabel.text = str(skill_uses_left)
+func SetSkillCount(skill_count):
+	skill_uses_left = skill_count
+	$RichTextLabel.text = str(skill_count)
 
 func OnButtonPressed():
 	if IsActive():

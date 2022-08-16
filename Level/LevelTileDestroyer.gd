@@ -22,10 +22,12 @@ func OnMatch(tile, count):
 	.OnMatch(tile, count)
 	
 	if count >= TARGET_TILE_MATCH:
-		current_tile_match -= 1
+		current_tile_match = max(0, current_tile_match - 1)
+		if current_tile_match == 0:
+			$"%MatchLeft".modulate = Color.green
+		$"%MatchLeft".text = str(current_tile_match)
 		current_score += pow(count, 2)
 		$"%Label".text = "SCORE: " + str(current_score)
-		$"%MatchLeft".text = str(current_tile_match)
 		
 		if current_tile_match == 0:
 			.LevelWon()
