@@ -98,11 +98,12 @@ func create_grid():
 	get_tree().call_group("tiles", "EnableBlockButton")
 
 	for x in level_size.x:
-		yield(get_tree().create_timer(0.1), "timeout")
 		var player = $AudioPlayer.duplicate()
 		add_child(player)
 		player.play_sound()
+#		player.play()
 		player.connect("finished", player, "queue_free")
+		yield(get_tree().create_timer(0.08), "timeout")
 
 func SpawnTiles(count, position):
 	get_tree().call_group("detectors", "DisableDetector")
@@ -138,8 +139,6 @@ func HandleMatchTiles(tile):
 	if group_count >= match_count:
 		CreateLabelForMatch(tile, group_count)
 		OnMatch(tile, group_count)
-	else:
-		$AudioStreamPlayer2D.play()
 	
 	tile.UnmarkMatchingGroup()
 

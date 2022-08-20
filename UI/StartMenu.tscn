@@ -8,19 +8,29 @@
 [node name="StartMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 227.0
+margin_top = 35.0
+margin_right = 227.0
+margin_bottom = 35.0
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -737.0
+margin_top = -335.0
+margin_right = 287.0
+margin_bottom = 265.0
 texture = ExtResource( 1 )
 expand = true
 
 [node name="NormalGame" type="TextureButton" parent="."]
-margin_left = 396.0
-margin_top = 99.0
-margin_right = 627.0
-margin_bottom = 190.0
+margin_left = 176.0
+margin_top = 27.0
+margin_right = 407.0
+margin_bottom = 118.0
 texture_normal = ExtResource( 2 )
 expand = true
 
@@ -35,11 +45,30 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="RandomGame" type="TextureButton" parent="."]
+margin_left = 181.0
+margin_top = 150.0
+margin_right = 412.0
+margin_bottom = 241.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="RandomGame"]
+margin_left = 29.0
+margin_top = 29.0
+margin_right = 207.0
+margin_bottom = 69.0
+custom_fonts/font = ExtResource( 3 )
+text = "RANDOM GAME"
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Count" type="TextureButton" parent="."]
-margin_left = 146.0
-margin_top = 295.0
-margin_right = 346.0
-margin_bottom = 370.0
+margin_left = -176.0
+margin_top = 300.0
+margin_right = 24.0
+margin_bottom = 375.0
 texture_normal = ExtResource( 2 )
 expand = true
 
@@ -52,10 +81,10 @@ custom_fonts/font = ExtResource( 3 )
 text = "COUNT TILES"
 
 [node name="Classic" type="TextureButton" parent="."]
-margin_left = 410.0
-margin_top = 293.0
-margin_right = 610.0
-margin_bottom = 368.0
+margin_left = 191.0
+margin_top = 294.0
+margin_right = 391.0
+margin_bottom = 369.0
 texture_normal = ExtResource( 2 )
 expand = true
 
@@ -68,9 +97,9 @@ custom_fonts/font = ExtResource( 3 )
 text = "CLASSIC"
 
 [node name="MatchMore" type="TextureButton" parent="."]
-margin_left = 686.0
+margin_left = 528.0
 margin_top = 295.0
-margin_right = 886.0
+margin_right = 728.0
 margin_bottom = 370.0
 texture_normal = ExtResource( 2 )
 expand = true
@@ -84,10 +113,10 @@ custom_fonts/font = ExtResource( 3 )
 text = "MATCH ANY"
 
 [node name="Exit" type="TextureButton" parent="."]
-margin_left = 427.0
-margin_top = 457.0
-margin_right = 596.0
-margin_bottom = 522.0
+margin_left = 201.0
+margin_top = 437.0
+margin_right = 370.0
+margin_bottom = 502.0
 texture_normal = ExtResource( 2 )
 expand = true
 
@@ -100,6 +129,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "EXIT"
 
 [connection signal="pressed" from="NormalGame" to="." method="_on_NormalGame_pressed"]
+[connection signal="pressed" from="RandomGame" to="." method="_on_RandomGame_pressed"]
 [connection signal="pressed" from="Count" to="." method="_on_Count_pressed"]
 [connection signal="pressed" from="Classic" to="." method="_on_Classic_pressed"]
 [connection signal="pressed" from="MatchMore" to="." method="_on_MatchMore_pressed"]

@@ -10,6 +10,8 @@ onready var levels = []
 func _ready():
 	Globals.connect("HANDLE_LEVEL_WON", self, "HandleLevelWon")
 	Globals.connect("RELOAD_CURRENT_LEVEL", self, "ReloadCurrentLevel")
+	
+	randomize()
 	HandleStartGame()
 	StartLevel()
 	
@@ -26,7 +28,11 @@ func HandleStartGame():
 		levels.append(preload("res://Level/LevelTileDestroyer.tscn"))
 	
 func HandleLevelWon():
-	completedLevelsCount += 1
+	if Globals.random_game:
+		completedLevelsCount = randi() % 72
+	else:
+		completedLevelsCount += 1
+		
 	StartLevel()
 	
 func HandleSkillCount(levelDificulty):

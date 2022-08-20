@@ -20,6 +20,7 @@ func SwipeWithTile(second_tile):
 
 func HandleTileClick(tile) -> bool:
 	if first_tile != null and first_tile.IsNeighbour(tile):
+		play_sound()
 		SwipeWithTile(tile)
 		UseSkill()
 		DeactivateSkill()
