@@ -1,9 +1,10 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Utils/AudioPlayer.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/CHUBBY.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/Sprites/CartoonForest.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/UI/menu.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/UI/restart.png" type="Texture" id=6]
 [ext_resource path="res://Skills/SmallBomb.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Skills/MatchTwoTiles.tscn" type="PackedScene" id=8]
@@ -120,11 +121,19 @@ position = Vector2( 67, 479 )
 unique_name_in_owner = true
 position = Vector2( 53, 186 )
 
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer"]
+margin_left = 860.0
+margin_top = 20.0
+margin_right = 940.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 5 )
+expand = true
+
 [node name="LevelRestart" type="TextureButton" parent="CanvasLayer"]
 margin_left = 860.0
-margin_top = 55.0
+margin_top = 120.0
 margin_right = 940.0
-margin_bottom = 135.0
+margin_bottom = 200.0
 texture_normal = ExtResource( 6 )
 expand = true
 
@@ -163,4 +172,5 @@ position = Vector2( 823, 538 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 
+[connection signal="pressed" from="CanvasLayer/MenuButton" to="." method="_on_MenuButton_pressed"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

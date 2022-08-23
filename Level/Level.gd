@@ -186,5 +186,10 @@ func LevelWon():
 func OnLevelRestartPressed():
 	Globals.emit_signal("RELOAD_CURRENT_LEVEL")
 
+func _on_MenuButton_pressed():
+	get_tree().change_scene("res://UI/StartMenu.tscn")
+
 func _on_AnimatedSprite_animation_finished():
 	Globals.emit_signal("HANDLE_LEVEL_WON") 
+
+
