@@ -20,7 +20,7 @@ expand = true
 [node name="RichTextLabel" parent="." index="1"]
 margin_left = -6.0
 margin_top = -16.0
-margin_right = 7.0
+margin_right = 10.0
 margin_bottom = 23.0
 mouse_filter = 2
 custom_fonts/normal_font = ExtResource( 4 )
